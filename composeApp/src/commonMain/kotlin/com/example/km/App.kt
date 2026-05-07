@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.safeContentPadding
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -23,6 +24,7 @@ import km.composeapp.generated.resources.compose_multiplatform
 @Preview
 fun App() {
     MaterialTheme {
+        var location by remember { mutableStateOf("Europe/Paris") }
         var timeAtLocation by remember { mutableStateOf("No location selected") }
 
         Column(
@@ -31,9 +33,11 @@ fun App() {
                 .fillMaxSize(),
         ) {
             Text(timeAtLocation)
+            TextField(value = location, onValueChange = { location = it })
             Button(onClick = { timeAtLocation = "13:30" }) {
                 Text("Show Time At Location")
             }
         }
     }
 }
+
